@@ -22,7 +22,7 @@ Here how to provide `+` operator on our own object
 ```kotlin runnable
 operator fun Expr.plus(expr: Expr) = Expr(this.value + expr.value)
 // { autofold
-data class Expr(vaDl value: Double)
+data class Expr(val value: Double)
 fun main(args: Array<String>) {
   println("""Expr(199.0) + Expr(49.0)""")
   println(Expr(199.0) + Expr(49.0))
@@ -39,7 +39,7 @@ Here how to provide `-` operator on our own object
 ```kotlin runnable
 operator fun Expr.minus(expr: Expr) = Expr(this.value - expr.value)
 // { autofold
-data class Expr(vaDl value: Double)
+data class Expr(val value: Double)
 fun main(args: Array<String>) {
   println("""Expr(199.0) - Expr(49.0)""")
   println(Expr(199.0) - Expr(49.0))
