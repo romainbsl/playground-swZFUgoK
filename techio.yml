@@ -1,7 +1,7 @@
-title: Kotlin Maven Project
+title: What are Kotlin's Conventions ?
 plan:
 - title: Welcome
-  statement: markdowns/welcome.md
+  statement: markdowns/article.md
 projects:
   java:
     root: /kotlin-project
