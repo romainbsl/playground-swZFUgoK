@@ -21,23 +21,44 @@ data class Expr(val value: Double)
 
 > `plus`
 
-@[Here how to provide `+` operator on our own object]({"stubs": ["src/plus.kt"], "command": "ExpreTest#plus"})
+```kotlin
+// Here how to provide `+` operator on our own object
+operator fun Expr.plus(expr: Expr) = Expr(this.value + expr.value)
+```
 
 > `minus`
 
-@[Here how to provide `-` operator on our own object]({"stubs": ["src/minus.kt"], "command": "ExpreTest#minus"})
+```kotlin
+// Here how to provide `-` operator on our own object
+operator fun Expr.minus(expr: Expr) = Expr(this.value - expr.value)
+```
 
 > `times`
 
-@[Here how to provide `*` operator on our own object]({"stubs": ["src/times.kt"], "command": "ExpreTest#times"})
+```kotlin
+// Here how to provide `*` operator on our own object
+operator fun Expr.times(expr: Expr) = Expr(this.value * expr.value)
+```
 
 > `div`
 
-@[Here how to provide `/` operator on our own object]({"stubs": ["src/div.kt"], "command": "ExpreTest#div"})
+```kotlin
+// Here how to provide `/` operator on our own object
+operator fun Expr.div(expr: Expr) = Expr(this.value / expr.value)
+```
 
 > `rem`
 
-@[Here how to provide `%` operator on our own object]({"stubs": ["src/rem.kt"], "command": "ExpreTest#rem"})
+```kotlin
+// Here how to provide `%` operator on our own object
+operator fun Expr.rem(expr: Expr) = Expr(this.value % expr.value)
+```
+
+Note that those examples are simple, you may be able to implement more complex operator, depending on your own 
+object's definition.
+
+@Try Me !({"stubs": ["src/expr.kt"], "command": "ExpreTest#operator"})
+
 
 ### Equality and inequality
 ### Comparison
