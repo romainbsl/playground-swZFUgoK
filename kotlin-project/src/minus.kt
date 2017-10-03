@@ -1,0 +1,1 @@
+operator fun Expr.minus(expr: Expr) = Expr(this.value - expr.value)

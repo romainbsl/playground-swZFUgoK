@@ -1,0 +1,1 @@
+operator fun Expr.times(expr: Expr) = Expr(this.value * expr.value)
