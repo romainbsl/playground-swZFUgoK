@@ -1,1 +1,1 @@
-# kotlin-template
+# Kotlin Conventions playground
