@@ -4,6 +4,12 @@ import org.junit.Test
 class ExpreTest {
 
   @Test
+  fun operator2() {
+    msg("Plus Operand", "Running Expr(199.0) + Expr(49.0)")
+    msg("Plus Operand", "${Expr(199.0) + Expr(49.0)}")
+    Assert.assertEquals(Expr(248.0), Expr(199.0) + Expr(49.0))
+  }
+  @Test
   fun operator() {
     // plus
     msg("Plus Operand", "Running Expr(199.0) + Expr(49.0)")

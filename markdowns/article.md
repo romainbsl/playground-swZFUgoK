@@ -57,7 +57,7 @@ operator fun Expr.rem(expr: Expr) = Expr(this.value % expr.value)
 Note that those examples are simple, you may be able to implement more complex operator, depending on your own 
 object's definition.
 
-@[Try Me !]({"stubs": ["src/expr.kt"], "command": "ExpreTest#operator"})
+@[Correct the following code!]({"stubs": ["src/expr.kt"], "command": "ExpreTest#operator", "ExpreTest#operator2"})
 
 
 ### Equality and inequality
