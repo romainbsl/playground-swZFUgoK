@@ -14,7 +14,7 @@ class ExpreTest {
   @Test
   fun minus() {
     Assert.assertEquals("Running Expr(199.0) - Expr(49.0)...", Expr(150.0), Expr(199.0) - Expr(49.0))
-    Assert.assertEquals("Running Expr(9.5) - Expr(29.0)...", Expr(19.5), Expr(9.5) - Expr(29.0))
+    Assert.assertEquals("Running Expr(9.5) - Expr(29.0)...", Expr(-19.5), Expr(9.5) - Expr(29.0))
   }
 
   @Test
