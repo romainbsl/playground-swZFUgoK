@@ -15,7 +15,9 @@ Operator overloading provide a way to invoke functions to perform arithmetic ope
 
 ### Arithmetic operators
 
-@[Let's assume the following snippet]({"stubs": ["src/expr.kt"]})
+```kotlin
+data class Expr(val value: Double)
+```
 
 > `plus`
 
