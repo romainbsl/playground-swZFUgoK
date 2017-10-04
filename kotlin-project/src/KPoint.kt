@@ -10,4 +10,8 @@ data class KPoint(var x: Double, var y: Double) {
   operator fun minus(p: KPoint): KPoint { return KPoint(Double.MIN_VALUE, Double.MAX_VALUE) }
   operator fun dec() : KPoint { return KPoint(Double.MIN_VALUE, Double.MAX_VALUE) }
   operator fun inc() : KPoint { return KPoint(Double.MIN_VALUE, Double.MAX_VALUE) }
+
+  override fun toString(): String {
+    return "KPoint($x, $y)"
+  }
 }

@@ -7,8 +7,8 @@ open class KPointTest {
   val decChannel = "Dec Operand"
   val incChannel = "Inc Operand"
 
-  val running: (String) -> String = { "Running $this..." }
-  val badImpl: (String) -> String = { "Bad implementation of the $this operator" }
+  val running: (String) -> String = { "Running $it..." }
+  val badImpl: (String) -> String = { "Bad implementation of the $it operator" }
   val error: (String, String) -> String = { first, second -> "<$first> was expected, but was <$second>" }
 
 
