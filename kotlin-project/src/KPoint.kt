@@ -1,6 +1,6 @@
 data class KPoint(var x: Double, var y: Double) {
   /*
-    implement operators
+    implement operators '+', '-', '++' and '--'
    */
   operator fun plus(p: KPoint): KPoint = KPoint(Double.MIN_VALUE, Double.MAX_VALUE)
   operator fun minus(p: KPoint): KPoint = KPoint(Double.MIN_VALUE, Double.MAX_VALUE)
