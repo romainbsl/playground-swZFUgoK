@@ -1,7 +1,9 @@
 title: What are Kotlin Conventions ?
 plan:
-- title: Welcome
+- title: Theory
   statement: markdowns/article.md
+- title: Exercices
+  statement: markdowns/exercice.md
 projects:
   java:
     root: /kotlin-project
