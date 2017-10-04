@@ -55,36 +55,36 @@ open class KPointTest {
     // Dec
     var decPoint1 = KPoint(5.0, 5.0)
     msg(decChannel, running("--KPoint(5.0, 5.0)"))
-    val resultDec1 = decPoint1 == KPoint(4.0, 4.0)
+    val resultDec1 = --decPoint1 == KPoint(4.0, 4.0)
     if (!resultDec1) {
       msg(decChannel, badImpl("dec()"))
       msg(decChannel, error("KPoint(4.0, 4.0)", "$decPoint1"))
-    } else msg(decChannel, "${--decPoint1}")
+    } else msg(decChannel, "${decPoint1}")
 
     var decPoint2 = KPoint(-10.0, -5.0)
     msg(decChannel, running("--KPoint(-10.0, -5.0)"))
-    val resultDec2 = decPoint2 == KPoint(-11.0, -6.0)
+    val resultDec2 = --decPoint2 == KPoint(-11.0, -6.0)
     if (!resultDec2) {
       msg(decChannel, badImpl("dec()"))
       msg(decChannel, error("KPoint(-11.0, -6.0)", "$decPoint2"))
-    } else msg(decChannel, "${--decPoint2}")
+    } else msg(decChannel, "${decPoint2}")
 
     // Inc
     var incPoint1 = KPoint(5.0, 5.0)
     msg(incChannel, running("++KPoint(5.0, 5.0)"))
-    val resultInc1 = incPoint1 == KPoint(6.0, 6.0)
+    val resultInc1 = ++incPoint1 == KPoint(6.0, 6.0)
     if (!resultInc1) {
       msg(incChannel, badImpl("inc()"))
       msg(incChannel, error("KPoint(6.0, 6.0)", "$incPoint1"))
-    } else msg(incChannel, "${++incPoint1}")
+    } else msg(incChannel, "${incPoint1}")
 
     var incPoint2 = KPoint(-10.0, -5.0)
     msg(incChannel, running("++KPoint(-10.0, -5.0)"))
-    val resultInc2 = incPoint2 == KPoint(-9.0, -4.0)
+    val resultInc2 = ++incPoint2 == KPoint(-9.0, -4.0)
     if (!resultInc2) {
       msg(incChannel, badImpl("inc()"))
       msg(incChannel, error("KPoint(-9.0, -4.0)", "$incPoint2"))
-    } else msg(incChannel, "${++incPoint2}")
+    } else msg(incChannel, "${incPoint2}")
 
     success(resultPlus1 && resultPlus2
         && resultMinus1 && resultMinus2
