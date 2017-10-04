@@ -23,43 +23,72 @@ data class Expr(val value: Double)
 
 ```kotlin
 // Here how to provide `+` operator on our own object
-operator fun Expr.plus(expr: Expr) = Expr(this.value + expr.value)
+operator fun plus(expr: Expr) = Expr(this.value + expr.value)
 ```
 
 > `minus`
 
 ```kotlin
 // Here how to provide `-` operator on our own object
-operator fun Expr.minus(expr: Expr) = Expr(this.value - expr.value)
+operator fun minus(expr: Expr) = Expr(this.value - expr.value)
 ```
 
 > `times`
 
 ```kotlin
 // Here how to provide `*` operator on our own object
-operator fun Expr.times(expr: Expr) = Expr(this.value * expr.value)
+operator fun times(expr: Expr) = Expr(this.value * expr.value)
 ```
 
 > `div`
 
 ```kotlin
 // Here how to provide `/` operator on our own object
-operator fun Expr.div(expr: Expr) = Expr(this.value / expr.value)
+operator fun div(expr: Expr) = Expr(this.value / expr.value)
 ```
 
 > `rem`
 
 ```kotlin
 // Here how to provide `%` operator on our own object
-operator fun Expr.rem(expr: Expr) = Expr(this.value % expr.value)
+operator fun rem(expr: Expr) = Expr(this.value % expr.value)
+```
+
+> `dec`
+
+```kotlin
+// Here how to provide `--` operator on our own object
+operator fun dec() = Expr(this.value--)
+```
+
+> `inc`
+
+```kotlin
+// Here how to provide `--` operator on our own object
+operator fun inc() = Expr(this.value++)
 ```
 
 Note that those examples are simple, you may be able to implement more complex operator, depending on your own 
 object's definition.
 
-@[Correct the following code!]({"stubs": ["src/expr.kt"], "command": "ExpreTest#operator", "ExpreTest#operator2"})
-
-
+```kotlin runnable
+data class Expr(val value: Double) {
+  operator fun plus(expr: Expr) = Expr(this.value + expr.value)
+  operator fun minus(expr: Expr) = Expr(this.value - expr.value)
+  operator fun times(expr: Expr) = Expr(this.value * expr.value)
+  operator fun div(expr: Expr) = Expr(this.value / expr.value)
+  operator fun rem(expr: Expr) = Expr(this.value % expr.value)
+}
+// { autofold
+fun main(args: Array<String>) {
+  println("Running Expr(2.0) + Expr(3.0)): ${Expr(2.0) + Expr(3.0)}")
+  println("Running Expr(3.0) - Expr(2.0)): ${Expr(3.0) - Expr(2.0)}")
+  println("Running Expr(2.0) * Expr(5.0)): ${Expr(2.0) * Expr(5.0)}")
+  println("Running Expr(6.0) / Expr(3.0)): ${Expr(6.0) / Expr(3.0)}")
+  println("Running Expr(9.5) % Expr(3.0)): ${Expr(9.5) % Expr(3.0)}")
+}
+// }
+```
 ### Equality and inequality
 ### Comparison
 
