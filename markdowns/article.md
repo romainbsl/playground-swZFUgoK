@@ -74,7 +74,70 @@ Note that those examples are quiet simple, you may be able to implement more com
 object's definition.
 
 ### Equality and inequality
+
+As a Java developer I always felt confused about equality, sometimes you have to use `==` / `!=` (on primitives), 
+sometimes you have to use `equals()`. (reminder, the usage of `==`/ `!=` on non-primitive checks the reference of the
+ object not it's value).
+ 
+Kotlin makes it more simple by reserving the symbols `==`and `!=` to check the values of objects (to check 
+references you may use `===`/ `!==`).
+
+To overload the equality (and inequality) checks, you may override the well known `equals()` function.
+
+```kotlin
+override fun equals(other: Any?): Boolean {
+  if (other == null || 
+      other !is Point ||
+      x != other.x || y != other.y) return false
+    
+  return true
+}
+```   
+
+> Exception: As you may know, in Kotlin objects can be non-null. In that case, `x == null` will always be `false`, 
+and `equals` will never be called. 
+
 ### Comparison
+
+Comparison, `<`, `>`, `<=` and `>=`, are all based on one function, `compareTo()`. This function returns an `Int`, 
+that define if the left-side of an expression is `greater`, `smaller` or `equals` to the right-side of the expression.
+
+| Expression | function called |
+| -----------|-------------- |
+| left > right | left.compareTo(right) > 0 |
+| left < right | left.compareTo(right) < 0 |
+| left >= right | left.compareTo(right) >= 0 |
+| left <= right | left.compareTo(right) <= 0 |
+
+Here is an examples on how we could compare dates.
+
+```kotlin runnable
+data class Date(val year: Int, val month: Int, val day: Int) {
+  operator fun compareTo(d: Date) = when {
+    year != d.year -> year - d.year
+    month != d.month -> month - d.month
+    else -> day - d.day
+  }
+}
+//{autofold
+val compare: (String, String, String) -> String = {first, op, second -> "Compare $first $op $second = "}
+fun main(args: Array<String>) {
+  val d1 = Date(2017, 1, 1)
+  val d2 = Date(2017, 12, 31)
+  val d3 = Date(2017, 1, 1)
+  val d4 = Date(2017, 6, 15)
+
+  println(compare(d1.toString(), ">", d2.toString()) + (d1 > d2))
+  println(compare(d1.toString(), "<", d2.toString()) + (d1 < d2))
+  println(compare(d2.toString(), ">=", d4.toString()) + (d2 >= d4))
+  println(compare(d2.toString(), "<=", d4.toString()) + (d2 <= d4))
+  println(compare(d4.toString(), ">", d3.toString()) + (d4 > d3))
+  println(compare(d4.toString(), "<", d3.toString()) + (d4 < d3))
+  println(compare(d1.toString(), "<=", d3.toString()) + (d1 >= d3))
+  println(compare(d1.toString(), "<=", d3.toString()) + (d1 <= d3))
+}
+//}
+```
 
 ## Collections
 ## Ranges
