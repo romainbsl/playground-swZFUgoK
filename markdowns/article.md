@@ -10,85 +10,69 @@ Let's see the details !!!
 
 ## Operator overloading
 
+Kotlin allows us to overload some operator on any object we have created, or that we know of (through extensions). 
 Operator overloading provide a way to invoke functions to perform arithmetic operation, equality checks or comparison
- on our own objects, through symbols like `+`, `-`, `/`, `*`, `%`, `<`, `>`, `=`.  
+ on as many objects as we want, through symbols like `+`, `-`, `/`, `*`, `%`, `<`, `>`, `=`. But, obviously, those 
+ overloading should be defined when it make sense to use them.
+ 
+For the following parts, let's assume we have the `data class`:  
+
+```kotlin
+data class Point(val x: Double, val y: Double)
+```
 
 ### Arithmetic operators
 
-```kotlin
-data class Expr(val value: Double)
-```
-
-> `plus`
+To overload the `+` operator we need the implement the function `plus`, with the keyword `operator`.
+This function takes one parameter of the same type as the object that is applied, `Point`.
 
 ```kotlin
-// Here how to provide `+` operator on our own object
-operator fun plus(expr: Expr) = Expr(this.value + expr.value)
+// Here how to provide `+` operator on our object Point
+operator fun plus(p: Point) = Point(this.x + p.x, this.y + p.x)
+// return type is inferred to Point
 ```
 
-> `minus`
+To go further we can apply all the following operator overloading on the object `Point`.
 
-```kotlin
-// Here how to provide `-` operator on our own object
-operator fun minus(expr: Expr) = Expr(this.value - expr.value)
-```
+|expression|function called|
+|------------|----------|
+| p1 `+` p2 | p1.`plus`(p2) |
+| p1 `-` p2 | p1.`minus`(p2) |
+| p1 `*` p2 | p1.`times`(p2) |
+| p1 `/` p2 | p1.`div`(p2) |
+| p1 `%` p2 | p1.`rem`(p2) |
+| p1`++` | p1.`inc`() |
+| p1`--` | p1.`dec`() |
 
-> `times`
-
-```kotlin
-// Here how to provide `*` operator on our own object
-operator fun times(expr: Expr) = Expr(this.value * expr.value)
-```
-
-> `div`
-
-```kotlin
-// Here how to provide `/` operator on our own object
-operator fun div(expr: Expr) = Expr(this.value / expr.value)
-```
-
-> `rem`
-
-```kotlin
-// Here how to provide `%` operator on our own object
-operator fun rem(expr: Expr) = Expr(this.value % expr.value)
-```
-
-> `dec`
-
-```kotlin
-// Here how to provide `--` operator on our own object
-operator fun dec() = Expr(this.value--)
-```
-
-> `inc`
-
-```kotlin
-// Here how to provide `--` operator on our own object
-operator fun inc() = Expr(this.value++)
-```
-
-Note that those examples are simple, you may be able to implement more complex operator, depending on your own 
-object's definition.
+Here the implementation on our previous `data class`:
 
 ```kotlin runnable
-data class Expr(val value: Double) {
-  operator fun plus(expr: Expr) = Expr(this.value + expr.value)
-  operator fun minus(expr: Expr) = Expr(this.value - expr.value)
-  operator fun times(expr: Expr) = Expr(this.value * expr.value)
-  operator fun div(expr: Expr) = Expr(this.value / expr.value)
-  operator fun rem(expr: Expr) = Expr(this.value % expr.value)
+data class Point(val x: Double, val y: Double) {
+  operator fun plus(p: Point) = Point(x + p.x, y + p.y)
+  operator fun minus(p: Point) = Point(x - p.x, y - p.y)
+  operator fun times(p: Point) = Point(x * p.x, y * p.y)
+  operator fun div(p: Point) = Point(x / p.x, y / p.y)
+  operator fun inc() = Point(x + 1, y + 1)
+  operator fun dec() = Point(x - 1, y - 1)
 }
 // { autofold
+val running: (String, String, String) -> String = {first, op, second -> "Running $first $op $second = "}
 fun main(args: Array<String>) {
-  println("Running Expr(2.0) + Expr(3.0)): ${Expr(2.0) + Expr(3.0)}")
-  println("Running Expr(3.0) - Expr(2.0)): ${Expr(3.0) - Expr(2.0)}")
-  println("Running Expr(2.0) * Expr(5.0)): ${Expr(2.0) * Expr(5.0)}")
-  println("Running Expr(6.0) / Expr(3.0)): ${Expr(6.0) / Expr(3.0)}")
-  println("Running Expr(9.5) % Expr(3.0)): ${Expr(9.5) % Expr(3.0)}")
+  var one = Point(2.0, 3.0)
+  var two = Point(3.0, 2.0)
+  println(running(one.toString(), "+", two.toString()) + (one + two))
+  println(running(one.toString(), "-", two.toString()) + (one - two))
+  println(running(one.toString(), "*", two.toString()) + (one * two))
+  println(running(one.toString(), "/", two.toString()) + (one * two))
+  println(running(one.toString(), "++", "") + (++one))
+  println(running(two.toString(), "--", "") + (--two))
 }
 // }
 ```
+
+Note that those examples are quiet simple, you may be able to implement more complex operator, depending on your own 
+object's definition.
+
 ### Equality and inequality
 ### Comparison
 
