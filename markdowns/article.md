@@ -77,7 +77,7 @@ object's definition.
 
 As a Java developer I always felt confused about equality, sometimes you have to use `==` / `!=` (on primitives), 
 sometimes you have to use `equals()`. (reminder, the usage of `==`/ `!=` on non-primitive checks the reference of the
- object not it's value).
+ object not its value).
  
 Kotlin makes it more simple by reserving the symbols `==`and `!=` to check the values of objects (to check 
 references you may use `===`/ `!==`).
@@ -137,6 +137,20 @@ fun main(args: Array<String>) {
   println(compare(d1.toString(), "<=", d3.toString()) + (d1 <= d3))
 }
 //}
+```
+
+You just saw how to use an operator to implement comparison between two instances of your objects. But, there is 
+another way to implement such mechanism, you could implement the `Comparable`interface, and overrides its 
+`compareTo`method, it would have the same result.
+
+```kotlin
+data class Date(val year: Int, val month: Int, val day: Int) : Comparable<Date> {
+  override fun compareTo(d: Date) = when {
+    year != d.year -> year - d.year
+    month != d.month -> month - d.month
+    else -> day - d.day
+  }
+}
 ```
 
 ## Collections
