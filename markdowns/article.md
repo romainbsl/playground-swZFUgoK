@@ -23,8 +23,8 @@ data class Point(val x: Double, val y: Double)
 
 ### Arithmetic operators
 
-To overload the `+` operator we need the implement the function `plus`, with the keyword `operator`.
-This function takes one parameter of the same type as the object that is applied, `Point`.
+To overload the `+` operator we need the implement the function `plus`, with the keyword `operator`. This function 
+takes one parameter of any kind.
 
 ```kotlin
 // Here how to provide `+` operator on our object Point
@@ -140,6 +140,9 @@ fun main(args: Array<String>) {
 ```
 
 ## Collections
+
+
+
 ## Ranges
 ## Destructive Declaration
 ## Invoke()
