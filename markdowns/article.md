@@ -119,7 +119,7 @@ data class Date(val year: Int, val month: Int, val day: Int) {
     else -> day - d.day
   }
 }
-//{autofold
+// { autofold
 val compare: (String, String, String) -> String = {first, op, second -> "Compare $first $op $second = "}
 fun main(args: Array<String>) {
   val d1 = Date(2017, 1, 1)
@@ -136,7 +136,7 @@ fun main(args: Array<String>) {
   println(compare(d1.toString(), "<=", d3.toString()) + (d1 >= d3))
   println(compare(d1.toString(), "<=", d3.toString()) + (d1 <= d3))
 }
-//}
+// }
 ```
 
 You just saw how to use an operator to implement comparison between two instances of your objects. But, there is 
@@ -155,7 +155,52 @@ data class Date(val year: Int, val month: Int, val day: Int) : Comparable<Date> 
 
 ## Collections
 
+Kotlin collections bring two type of conventions, the interaction with a specific data by using `getter`and `setter` 
+with indexes, and the ability to check if an object belongs to a given list through the keyword `in`.
 
+> `get / set`
+
+You can implement `get`and `set` operator and then use sqaure brackets to interact with your objects.
+
+| Expression | Function called |
+| -------|-------------- |
+| `a[i]`  | `a.get(i)` |
+| `a[i, j]`  | `a.get(i, j)` |
+| `a[i_1, ...,  i_n]`  | `a.get(i_1, ...,  i_n)` | 
+
+Here is an example:
+
+```kotlin runnable
+data class Product(val name: String)
+data class Retailer(val name: String, var products: MutableList<Product>) {
+  operator fun get(id: Int) = products[id]
+  operator fun set(id: Int, product: Product) {
+    products[id] = product
+  }
+  operator fun contains(product: Product) = products.contains(product)
+}
+// { autofold
+fun main(args: Array<String>) {
+  val samsung = Retailer("samsung", mutableListOf(galaxyS8, galaxyNote8))
+  val xiaomi = Retailer("xiaomi", mutableListOf(miMix2))
+  val android = Retailer("android ", mutableListOf(pixel, pixel2, galaxyS8, galaxyNote8, miMix2))
+
+  println(contains(pixel, android))
+  println(contains(iPhone8, android))
+  println(contains(pixel, samsung))
+  println(contains(miMix2, xiaomi))
+}
+val pixel = Product("Pixel")
+val pixel2 = Product("Pixel 2")
+val galaxyS8 = Product("galaxyS8")
+val galaxyNote8 = Product("galaxyNote8")
+val miMix2 = Product("miMix2")
+val iPhone8 = Product("iPhone8")
+val contains: (Product, Retailer) -> String = {p, r -> "Does ${p.name} is available in ${r.name}'s list ? ${p in r}"}
+// }
+```
+
+> `in / !in` 
 
 ## Ranges
 ## Destructive Declaration
@@ -176,19 +221,19 @@ data class Date(val year: Int, val month: Int, val day: Int) : Comparable<Date> 
 
 
 ``` kotlin runnable
-data class Invoice(val client: String, val price: Double) {
-  operator fun plus(inv: Invoice) =
+data class Retailer(val client: String, val price: Double) {
+  operator fun plus(inv: Retailer) =
     if (this.client == inv.client)
-      Invoice(this.client, this.price + inv.price)
+      Retailer(this.client, this.price + inv.price)
     else
-      Invoice("${this.client} & ${inv.client}", this.price + inv.price)
+      Retailer("${this.client} & ${inv.client}", this.price + inv.price)
 }
 // { autofold
 fun main(args: Array<String>) {
-  println("""Invoice("Client 1", 195.0) + Invoice("Client 1", 19.0)""")
-  println(Invoice("Client 1", 195.0) + Invoice("Client 1", 19.0))
-  println("""Invoice("Client 1", 149.0) + Invoice("Client 2", 49.0)""")
-  println(Invoice("Client 1", 149.0) + Invoice("Client 2", 49.0))
+  println("""Retailer("Client 1", 195.0) + Retailer("Client 1", 19.0)""")
+  println(Retailer("Client 1", 195.0) + Retailer("Client 1", 19.0))
+  println("""Retailer("Client 1", 149.0) + Retailer("Client 2", 49.0)""")
+  println(Retailer("Client 1", 149.0) + Retailer("Client 2", 49.0))
 }
 // }
 ```
