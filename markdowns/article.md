@@ -170,40 +170,58 @@ You can implement `get`and `set` operator and then use sqaure brackets to intera
 | `a[i, j]`  | `a.get(i, j)` |
 | `a[i_1, ...,  i_n]`  | `a.get(i_1, ...,  i_n)` | 
 
-Here is an example:
+> `in / !in` 
+
+`in` is an operator that calls the function `contains`, that you may implement to check if a value if part of your 
+object. Obviously, `!in` will call `!contains`. You may need to know that `Collection` have already an 
+implementation of the `contains`function, so you could already check if `1` is part of the `listOf(1, 2, 3)` (hint: 
+this return `true` ^_^).
+
+Here is an example implementing operators for collections
 
 ```kotlin runnable
-data class Product(val name: String)
-data class Retailer(val name: String, var products: MutableList<Product>) {
+data class OperatingSystem(val name: String, val products: MutableList<Product> = mutableListOf()) {
   operator fun get(id: Int) = products[id]
   operator fun set(id: Int, product: Product) {
-    products[id] = product
+    products.add(id, product)
   }
-  operator fun contains(product: Product) = products.contains(product)
+
+  operator fun contains(p: Product) = p in products
 }
 
-// { autofold
+data class Product(val name: String)
+
+val android = OperatingSystem("Android")
+
+val googlePixel2 = Product("Google Pixel 2")
+val samsungGalaxyS8 = Product("Samsung Galaxy S8")
+val xiaomiMiMix2 = Product("Xiaomi Mi Mix 2")
+val iPhoneX = Product("iPhone X")
+
+//{ autofold
 fun main(args: Array<String>) {
-  val samsung = Retailer("samsung", mutableListOf(galaxyS8, galaxyNote8))
-  val xiaomi = Retailer("xiaomi", mutableListOf(miMix2))
-  val android = Retailer("android ", mutableListOf(pixel, pixel2, galaxyS8, galaxyNote8, miMix2))
+  // Use OperatingSystem.set operator
+  android[0] = googlePixel2
+  android[1] = samsungGalaxyS8
+  android[2] = xiaomiMiMix2
 
-  println(contains(pixel, android))
-  println(contains(iPhone8, android))
-  println(contains(pixel, samsung))
-  println(contains(miMix2, xiaomi))
+  println("Here is Android list ${android.products}")
+  println()
+
+  // Use OperatingSystem.get operator
+  println("Phone at index 0 in ${android.name} list is ${android[0]}")
+  println()
+
+  // Use OperatingSystem.in/!in operator
+  println(contains(xiaomiMiMix2, android))
+  println(contains(iPhoneX, android))
 }
-val pixel = Product("Pixel")
-val pixel2 = Product("Pixel 2")
-val galaxyS8 = Product("galaxyS8")
-val galaxyNote8 = Product("galaxyNote8")
-val miMix2 = Product("miMix2")
-val iPhone8 = Product("iPhone8")
-val contains: (Product, Retailer) -> String = {p, r -> "Does ${p.name} is available in ${r.name}'s list ? ${p in r}"}
-// }
-```
 
-> `in / !in` 
+val contains: (Product, OperatingSystem) -> String = { p, r ->
+  "Does ${p.name} is available in ${r.name}'s list ? [= ${p in r} }"
+}
+//}
+```
 
 ## Ranges
 ## Destructive Declaration
