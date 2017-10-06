@@ -55,6 +55,7 @@ data class Point(val x: Double, val y: Double) {
   operator fun inc() = Point(x + 1, y + 1)
   operator fun dec() = Point(x - 1, y - 1)
 }
+
 // { autofold
 val running: (String, String, String) -> String = {first, op, second -> "Running $first $op $second = "}
 fun main(args: Array<String>) {
@@ -119,6 +120,7 @@ data class Date(val year: Int, val month: Int, val day: Int) {
     else -> day - d.day
   }
 }
+
 // { autofold
 val compare: (String, String, String) -> String = {first, op, second -> "Compare $first $op $second = "}
 fun main(args: Array<String>) {
@@ -179,6 +181,7 @@ data class Retailer(val name: String, var products: MutableList<Product>) {
   }
   operator fun contains(product: Product) = products.contains(product)
 }
+
 // { autofold
 fun main(args: Array<String>) {
   val samsung = Retailer("samsung", mutableListOf(galaxyS8, galaxyNote8))
