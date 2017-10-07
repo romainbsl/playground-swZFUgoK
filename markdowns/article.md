@@ -401,11 +401,7 @@ for((key, value) in map) println("Literal of $key is $value")
 // }
 ```
 
-## Invoke()
-
-
-
-## Go further 
+## Summary
 
 > Here is a reminder of what you can do with conventions
 
@@ -416,9 +412,23 @@ for((key, value) in map) println("Literal of $key is $value")
   | `a * b` | `a.times(b)` |
   | `a / b` | `a.div(b)` |
   | `a % b` | `a.rem(b)`, `a.mod(b)` (deprecated) |
-  | `a..b ` | `a.rangeTo(b)` |
+  | `a > b` | `a.compareTo(b)` |
+  | `a++` | `a.inc()` |
+  | `b--` | `b.dec()` |
+  | `a == b` | `a.equals(b)` |
+  | `a != b` | `!a.equals(b)` |
+  | `a < b` | `a.compareTo(b)` |
+  | `a >= b` | `a.compareTo(b)` |
+  | `a <= b` | `a.compareTo(b)` |
+  | `a[i]` | `a.get(i)` |
+  | `a[i, j]` | `a.get(i, j)` |
+  | `a[i] = b` | `a.set(i, b)` |
+  | `a[i, j] = b` | `a.set(i, j, b)` |
+  | `a in b` | `b.contains(a)` |
+  | `a !in b` | `!b.contains(a)` |
+  | `a..b` | `a.rangeTo(b)` |
 
-[Full documentation](https://kotlinlang.org/docs/reference/operator-overloading.html)
+Go further with the [full documentation](https://kotlinlang.org/docs/reference/) !
 
 [extensions]: https://kotlinlang.org/docs/reference/extensions.html
 [op_overloading]: https://kotlinlang.org/docs/reference/operator-overloading.html
