@@ -224,7 +224,95 @@ val contains: (Product, OperatingSystem) -> String = { p, r ->
 ```
 
 ## Ranges
+
+//TODO
+
 ## Destructive Declaration
+
+Many times, you certainly had to decompose objects to play with.
+
+```kotlin
+val name = person.name
+val age = person.age
+val address = person.address
+// and so on
+``` 
+
+With Kotlin, you be able to decompose you `data class`, `Map(s)`, and own object in a simpler way.
+
+- `data class`
+
+`data class` get rid of a lot of boilerplate code (`getter/setter`, `equals`, `hashCode`, `toString`, `copy`...), but it 
+also brings the ability to decompose our object according to the properties we have defined.
+Kotlin create a `component` operator for each of those properties.
+
+Let's take this data `class as` example
+
+```kotlin
+data class Person(val name: String, val age: Int, val address: String)
+```
+
+The compiler will automatically provide `componentN()` for `name` (component1), `age` (component2) and `address` 
+(component3). Give you the power to destructure the `Person` object into variables. You must take note that component
+ operators are limited to 20.
+
+```kotlin
+data class Person(val name: String, val age: Int, val address: String) {
+  // behind the scene
+  operator fun component1() = this.name
+  operator fun component2() = this.age
+  operator fun component3() =  this.address
+}
+```
+
+> Usage
+
+```kotlin runnable
+data class Person(val name: String, val age: Int, val address: String)
+
+// { autofold
+fun main(args: Array<String>) {
+// }
+  val (name, age, address) = buildPerson("Romain", "France")
+
+// { autofold
+  println("name: $name")
+  println("age: $age")
+  println("address: $name")
+}
+fun buildPerson(name: String, address: String) = Person(name, 30, address)
+// }
+```
+
+> tips: if you don't need some elements you can omit them by using an underscore `_`
+
+```kotlin runnable
+data class Person(val name: String, val age: Int, val address: String)
+
+// { autofold
+fun main(args: Array<String>) {
+// }
+  val (name, _, address) = buildPerson("Romain", "France")
+
+// { autofold
+  println("name: $name")
+  println("address: $name")
+}
+fun buildPerson(name: String, address: String) = Person(name, 30, address)
+// }
+```
+
+- `Map(s)`
+
+Map implements `iterator()`, `component1()` for key, and `component2()` for value. That help us to write nice 
+more convenient iteration like:
+
+```kotlin
+for((key, value) in map) {
+  // computation
+}
+```
+
 ## Invoke()
 
 ## Go further 
@@ -239,24 +327,5 @@ val contains: (Product, OperatingSystem) -> String = { p, r ->
   | `a / b` | `a.div(b)` |
   | `a % b` | `a.rem(b)`, `a.mod(b)` (deprecated) |
   | `a..b ` | `a.rangeTo(b)` |
-
-
-``` kotlin runnable
-data class Retailer(val client: String, val price: Double) {
-  operator fun plus(inv: Retailer) =
-    if (this.client == inv.client)
-      Retailer(this.client, this.price + inv.price)
-    else
-      Retailer("${this.client} & ${inv.client}", this.price + inv.price)
-}
-// { autofold
-fun main(args: Array<String>) {
-  println("""Retailer("Client 1", 195.0) + Retailer("Client 1", 19.0)""")
-  println(Retailer("Client 1", 195.0) + Retailer("Client 1", 19.0))
-  println("""Retailer("Client 1", 149.0) + Retailer("Client 2", 49.0)""")
-  println(Retailer("Client 1", 149.0) + Retailer("Client 2", 49.0))
-}
-// }
-```
 
 [Full documentation](https://kotlinlang.org/docs/reference/operator-overloading.html)
