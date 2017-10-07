@@ -1,8 +1,8 @@
-title: What are Kotlin Conventions ?
+title: What are Kotlin conventions ?
 plan:
-- title: Theory
+- title: Let's learn Kotlin conventions
   statement: markdowns/article.md
-#- title: Exercices
+#- title: Now you know...
 #  statement: markdowns/exercice.md
 projects:
   java:
