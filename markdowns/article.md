@@ -1,19 +1,19 @@
 ## Introduction
 
-Kotlin is a brand new world, with quiet a lot of new features. One of them is **conventions**. 
+Kotlin is a brand new world, with quiet a lot of new features. Some of them are named **conventions**. 
 Kotlin documentation said that if you define an `operator` function `plus`, you can use `+`, _by convention_, to call
  that function. 
  
-Conventions are not just for operators, you'll find them in Collections, Ranges, Destructive Declaration and invocation.
+Conventions are not just for operators, you'll find them in Collections, Ranges, Destructive Declaration and Invocation.
 
 Let's see the details !!! 
 
 ## Operator overloading
 
-Kotlin allows us to overload some operator on any object we have created, or that we know of (through extensions). 
-Operator overloading provide a way to invoke functions to perform arithmetic operation, equality checks or comparison
- on as many objects as we want, through symbols like `+`, `-`, `/`, `*`, `%`, `<`, `>`, `=`. But, obviously, those 
- overloading should be defined when it make sense to use them.
+Kotlin allows us to overload some operators on any object we have created, or that we know of (through [extensions][]). 
+The concept of [operator overloading][op_overloading] provides a way to invoke functions to perform arithmetic 
+operation, equality checks or comparison on whatever object we want, through symbols like `+`, `-`, `/`, `*`, `%`,
+ `<`, `>`, `=`. But, obviously, those overloading should be defined when it make sense to use them.
  
 For the following parts, let's assume we have the `data class`:  
 
@@ -23,8 +23,8 @@ data class Point(val x: Double, val y: Double)
 
 ### Arithmetic operators
 
-To overload the `+` operator we need the implement the function `plus`, with the keyword `operator`. This function 
-takes one parameter of any kind.
+To overload the `+` operator we need to implement the function `plus`, with the keyword `operator`. This function 
+takes one parameter of any kind, even it make sense in most cases to use the same type.
 
 ```kotlin
 // Here how to provide `+` operator on our object Point
@@ -76,11 +76,11 @@ object's definition.
 
 ### Equality and inequality
 
-As a Java developer I always felt confused about equality, sometimes you have to use `==` / `!=` (on primitives), 
+As a Java developer, I always felt confused about equality, sometimes you have to use `==` / `!=` (on primitives), 
 sometimes you have to use `equals()`. (reminder, the usage of `==`/ `!=` on non-primitive checks the reference of the
  object not its value).
  
-Kotlin makes it more simple by reserving the symbols `==`and `!=` to check the values of objects (to check 
+Kotlin makes it more simple by reserving the symbols `==`and `!=` to check the objects' values (to check 
 references you may use `===`/ `!==`).
 
 To overload the equality (and inequality) checks, you may override the well known `equals()` function.
@@ -95,13 +95,14 @@ override fun equals(other: Any?): Boolean {
 }
 ```   
 
-> Exception: As you may know, in Kotlin objects can be non-null. In that case, `x == null` will always be `false`, 
+> **Exception**: As you may know, in Kotlin objects can be non-null. In that case, `x == null` will always be `false`, 
 and `equals` will never be called. 
 
 ### Comparison
 
 Comparison, `<`, `>`, `<=` and `>=`, are all based on one function, `compareTo()`. This function returns an `Int`, 
-that define if the left-side of an expression is `greater`, `smaller` or `equals` to the right-side of the expression.
+that define if the left-side of an expression is `greater`, `smaller` or `equals` to the right-side of that 
+same expression.
 
 | Expression | function called |
 | -----------|-------------- |
@@ -110,7 +111,7 @@ that define if the left-side of an expression is `greater`, `smaller` or `equals
 | left >= right | left.compareTo(right) >= 0 |
 | left <= right | left.compareTo(right) <= 0 |
 
-Here is an examples on how we could compare `Point`.
+Here is an examples on how we could compare `Point`s:
 
 ```kotlin runnable
 data class Point(val x: Double, val y: Double) {
@@ -137,7 +138,7 @@ fun main(args: Array<String>) {
 // }
 ```
 
-You just saw how to use an operator to implement comparison between two instances of your objects. But, there is 
+You just saw how to use an operator to implement comparison between two instances of your object. But, there is 
 another way to implement such mechanism, you could implement the `Comparable` interface, and overrides its 
 `compareTo` method, it would have the same result.
 
@@ -152,12 +153,12 @@ data class Point(val x: Double, val y: Double) : Comparable<Point> {
 
 ## Collections
 
-Kotlin collections bring two type of conventions, the interaction with a specific data by using `getter`and `setter` 
-with indexes, and the ability to check if an object belongs to a given list through the keyword `in`.
+Kotlin's Collections bring two type of **conventions**, the interaction with a specific data by using `getter` and 
+`setter` with indexes, and the ability to check if an object belongs to a given list through the keyword `in`.
 
-> `get / set`
+> `get` / `set`
 
-You can implement `get`and `set` operator and then use sqaure brackets to interact with your objects.
+You can implement `get`and `set` operators and then use sqaure brackets to interact with your objects.
 
 | Expression | Function called |
 | -------|-------------- |
@@ -165,17 +166,18 @@ You can implement `get`and `set` operator and then use sqaure brackets to intera
 | `a[i, j]`  | `a.get(i, j)` |
 | `a[i_1, ...,  i_n]`  | `a.get(i_1, ...,  i_n)` | 
 
-> `in / !in` 
+> `in` / `!in` 
 
-`in` is an operator that calls the function `contains`, that you may implement to check if a value if part of your 
-object. Obviously, `!in` will call `!contains`. You may need to know that `Collection` have already an 
+`in` is an operator that calls the function `contains()`, that you may implement to check if a value if part of your 
+object. Obviously, `!in` will call `!contains()`. You'll be glad to know that `Collection` have already an 
 implementation of the `contains`function, so you could already check if `1` is part of the `listOf(1, 2, 3)` (hint: 
 this return `true` ^_^).
 
 Here is an example implementing operators for collections
 
 ```kotlin runnable
-data class OperatingSystem(val name: String, val products: MutableList<Product> = mutableListOf()) {
+data class OperatingSystem(val name: String, 
+                           val products: MutableList<Product> = mutableListOf()) {
   operator fun get(id: Int) = products[id]
   operator fun set(id: Int, product: Product) {
     products.add(id, product)
@@ -220,11 +222,12 @@ val contains: (Product, OperatingSystem) -> String = { p, r ->
 
 ## Ranges
 
-Ranges are part of the nice features that make you love Kotlin. It's no magic, there is no complexity, but when you 
-think about it, it just make sense. To build ranges you can use the operator `..` (translated to `rangeTo()`).
+Ranges are part of the nice features that make you love Kotlin. It's no magic, there is _(nearly)_ no complexity, but 
+when you 
+think about it, it just make sense. To build ranges you can use the operator `..`, translated to `rangeTo()`.
 
-The Kotlin standard library provides some extra features around type that we know. So integral have their own 
-implementation of Ranges, like `IntRange` (as `LongRange`, `CharRange`) that allow you to write `1..10` that will 
+The Kotlin standard library provides some extra features around type that we know. So integrals have their own 
+implementation of Ranges, like `IntRange` (as `LongRange` and `CharRange`), that allow you to write `1..10` that will 
 build a collection of value from 1 to 10 included, by calling the following snippet `1.rangeTo(10)`.
 
 ```kotlin runnable
@@ -260,8 +263,7 @@ fun main(args: Array<String>) {
 val pointRange = Point(1.0, 1.0)..Point(5.0, 5.0)
 val point = Point(2.5, 2.5)
 println("Does $point is $pointRange ? [= ${point in pointRange} ]")
-
-//{ autofold
+// { autofold
 }
 data class Point(val x: Double, val y: Double) : Comparable<Point> {
   override fun compareTo(other: Point): Int = when {
@@ -269,12 +271,13 @@ data class Point(val x: Double, val y: Double) : Comparable<Point> {
     else -> (x - other.x).toInt()
   }
 }
+
 //}
 ```
 
 ### Iterating over ranges
 
-To go further we may implement an operator to iterate over over `Point` ranges, the `iterator()`.
+To go further we may implement an operator to iterate over over `Point` ranges, the `iterator()`:
 
 ```kotlin
 operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
@@ -310,7 +313,7 @@ operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
 
 ## Destructive Declaration
 
-Many times, you certainly had to decompose objects to play with.
+Many times, you certainly had to decompose objects to play with:
 
 ```kotlin
 val name = person.name
@@ -319,9 +322,9 @@ val address = person.address
 // and so on
 ``` 
 
-With Kotlin, you be able to decompose you `data class`, `Map(s)`, and own object in a simpler way.
+With Kotlin, you are able to decompose your `data class`, `Map(s)`, and own object in a simple way.
 
-- `data class`
+### `data class`
 
 `data class` get rid of a lot of boilerplate code (`getter/setter`, `equals`, `hashCode`, `toString`, `copy`...), but it 
 also brings the ability to decompose our object according to the properties we have defined.
@@ -334,8 +337,7 @@ data class Person(val name: String, val age: Int, val address: String)
 ```
 
 The compiler will automatically provide `componentN()` for `name` (component1), `age` (component2) and `address` 
-(component3). Give you the power to destructure the `Person` object into variables. You must take note that component
- operators are limited to 20.
+(component3). Give you the power to destructure the `Person` object into variables. 
 
 ```kotlin
 data class Person(val name: String, val age: Int, val address: String) {
@@ -354,7 +356,7 @@ data class Person(val name: String, val age: Int, val address: String)
 // { autofold
 fun main(args: Array<String>) {
 // }
-  val (name, age, address) = buildPerson("Romain", "France")
+val (name, age, address) = buildPerson("Romain", "Belgium")
 
 // { autofold
   println("name: $name")
@@ -373,7 +375,7 @@ data class Person(val name: String, val age: Int, val address: String)
 // { autofold
 fun main(args: Array<String>) {
 // }
-  val (name, _, address) = buildPerson("Romain", "France")
+val (name, _, address) = buildPerson("Romain", "Belgium")
 
 // { autofold
   println("name: $name")
@@ -383,18 +385,25 @@ fun buildPerson(name: String, address: String) = Person(name, 30, address)
 // }
 ```
 
-- `Map(s)`
+###  `Map(s)`
 
 Map implements `iterator()`, `component1()` for key, and `component2()` for value. That help us to write nice 
 more convenient iteration like:
 
-```kotlin
-for((key, value) in map) {
-  // computation
+```kotlin runnable
+// { autofold
+fun main(args: Array<String>) {
+// }
+val map = mapOf(1 to "one", 2 to "two", 3 to "three", 4 to "four")
+for((key, value) in map) println("Literal of $key is $value")
+// { autofold
 }
+// }
 ```
 
 ## Invoke()
+
+
 
 ## Go further 
 
@@ -410,3 +419,6 @@ for((key, value) in map) {
   | `a..b ` | `a.rangeTo(b)` |
 
 [Full documentation](https://kotlinlang.org/docs/reference/operator-overloading.html)
+
+[extensions]: https://kotlinlang.org/docs/reference/extensions.html
+[op_overloading]: https://kotlinlang.org/docs/reference/operator-overloading.html
