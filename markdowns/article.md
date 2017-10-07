@@ -1,6 +1,6 @@
-# Introduction
+## Introduction
 
-Kotlin is a brand new world, with quiet a lot of new feature. One of them is **conventions**. 
+Kotlin is a brand new world, with quiet a lot of new features. One of them is **conventions**. 
 Kotlin documentation said that if you define an `operator` function `plus`, you can use `+`, _by convention_, to call
  that function. 
  
