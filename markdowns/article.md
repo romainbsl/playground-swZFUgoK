@@ -278,7 +278,7 @@ fun main(args: Array<String>) {
 // { autofold
   println("name: $name")
   println("age: $age")
-  println("address: $name")
+  println("address: $address")
 }
 fun buildPerson(name: String, address: String) = Person(name, 30, address)
 // }
@@ -296,7 +296,7 @@ fun main(args: Array<String>) {
 
 // { autofold
   println("name: $name")
-  println("address: $name")
+  println("address: $address")
 }
 fun buildPerson(name: String, address: String) = Person(name, 30, address)
 // }
