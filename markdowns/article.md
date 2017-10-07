@@ -110,47 +110,42 @@ that define if the left-side of an expression is `greater`, `smaller` or `equals
 | left >= right | left.compareTo(right) >= 0 |
 | left <= right | left.compareTo(right) <= 0 |
 
-Here is an examples on how we could compare dates.
+Here is an examples on how we could compare `Point`.
 
 ```kotlin runnable
-data class Date(val year: Int, val month: Int, val day: Int) {
-  operator fun compareTo(d: Date) = when {
-    year != d.year -> year - d.year
-    month != d.month -> month - d.month
-    else -> day - d.day
+data class Point(val x: Double, val y: Double) {
+  operator fun compareTo(other: Point): Int = when {
+    y != other.y -> (y - other.y).toInt()
+    else -> (x - other.x).toInt()
   }
 }
 
 // { autofold
-val compare: (String, String, String) -> String = {first, op, second -> "Compare $first $op $second = "}
+val compare: (Point, String, Point) -> String = {first, op, second -> "Compare $first $op $second"}
 fun main(args: Array<String>) {
-  val d1 = Date(2017, 1, 1)
-  val d2 = Date(2017, 12, 31)
-  val d3 = Date(2017, 1, 1)
-  val d4 = Date(2017, 6, 15)
+  val p1 = Point(1.0,1.0)
+  val p2 = Point(2.0,2.0)
+  val p3 = Point(1.0,2.0)
 
-  println(compare(d1.toString(), ">", d2.toString()) + (d1 > d2))
-  println(compare(d1.toString(), "<", d2.toString()) + (d1 < d2))
-  println(compare(d2.toString(), ">=", d4.toString()) + (d2 >= d4))
-  println(compare(d2.toString(), "<=", d4.toString()) + (d2 <= d4))
-  println(compare(d4.toString(), ">", d3.toString()) + (d4 > d3))
-  println(compare(d4.toString(), "<", d3.toString()) + (d4 < d3))
-  println(compare(d1.toString(), "<=", d3.toString()) + (d1 >= d3))
-  println(compare(d1.toString(), "<=", d3.toString()) + (d1 <= d3))
+  println(compare(p1, "<", p2) + " [=${p1 > p2}]")
+  println(compare(p1, "<", p2) + " [=${p1 < p2}]")
+  println(compare(p1, ">", p3) + " [=${p1 > p3}]")
+  println(compare(p1, "<", p3) + " [=${p1 < p3}]")
+  println(compare(p2, ">", p3) + " [=${p2 > p3}]")
+  println(compare(p2, "<", p3) + " [=${p2 < p3}]")
 }
 // }
 ```
 
 You just saw how to use an operator to implement comparison between two instances of your objects. But, there is 
-another way to implement such mechanism, you could implement the `Comparable`interface, and overrides its 
-`compareTo`method, it would have the same result.
+another way to implement such mechanism, you could implement the `Comparable` interface, and overrides its 
+`compareTo` method, it would have the same result.
 
 ```kotlin
-data class Date(val year: Int, val month: Int, val day: Int) : Comparable<Date> {
-  override fun compareTo(d: Date) = when {
-    year != d.year -> year - d.year
-    month != d.month -> month - d.month
-    else -> day - d.day
+data class Point(val x: Double, val y: Double) : Comparable<Point> {
+  override fun compareTo(other: Point): Int = when {
+    y != other.y -> (y - other.y).toInt()
+    else -> (x - other.x).toInt()
   }
 }
 ```
@@ -225,7 +220,86 @@ val contains: (Product, OperatingSystem) -> String = { p, r ->
 
 ## Ranges
 
-//TODO
+Ranges are part of the nice features that make you love Kotlin. It's no magic, there is no complexity, but when you 
+think about it, it just make sense. To build ranges you can use the operator `..` (translated to `rangeTo()`).
+
+The Kotlin standard library provides some extra features around type that we know. So integral have their own 
+implementation of Ranges, like `IntRange` (as `LongRange`, `CharRange`) that allow you to write `1..10` that will 
+build a collection of value from 1 to 10 included, by calling the following snippet `1.rangeTo(10)`.
+
+```kotlin runnable
+//{ autofold
+fun main(args: Array<String>) {
+//}
+  (1..10).forEach(::print)
+//{ autofold
+}
+//}
+```
+
+### Custom ranges
+
+Let's get back to our `Point` class.
+
+```kotlin
+data class Point(val x: Double, val y: Double) : Comparable<Point> {
+  override fun compareTo(other: Point): Int = when {
+    y != other.y -> (y - other.y).toInt()
+    else -> (x - other.x).toInt()
+  }
+}
+```
+
+Kotlin provides an extension `rangeTo()` on `Comparable<T>` interface, so we don't need to overload it for our `Point` 
+class.
+
+```kotlin runnable
+//{ autofold
+fun main(args: Array<String>) {
+//}
+val pointRange = Point(1.0, 1.0)..Point(5.0, 5.0)
+val point = Point(2.5, 2.5)
+println("Does $point is $pointRange ? [= ${point in pointRange} ]")
+//{ autofold
+}
+//}
+```
+
+### Iterating over ranges
+
+To go further we may implement an operator to iterate over over `Point` ranges, the `iterator()`.
+
+```kotlin
+operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
+  var currentPoint = start
+  override fun hasNext() = currentPoint <= endInclusive
+  override fun next() = currentPoint++
+}
+``` 
+
+By doing that, we can now iterate over a `Point` collection:
+
+```kotlin runnable
+//{ autofold
+fun main(args: Array<String>) {
+//}
+for (point in Point(1.0, 1.0)..Point(5.0, 5.0)) println(point)
+//{ autofold
+}
+data class Point(val x: Double, val y: Double) : Comparable<Point> {
+  override fun compareTo(other: Point): Int = when {
+    y != other.y -> (y - other.y).toInt()
+    else -> (x - other.x).toInt()
+  }
+  operator fun inc() = Point(x + 1, y + 1)
+}
+operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
+  var currentPoint = start
+  override fun hasNext() = currentPoint <= endInclusive
+  override fun next() = currentPoint++
+}
+//}
+```
 
 ## Destructive Declaration
 
