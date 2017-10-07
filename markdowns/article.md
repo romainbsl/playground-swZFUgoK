@@ -262,6 +262,12 @@ val point = Point(2.5, 2.5)
 println("Does $point is $pointRange ? [= ${point in pointRange} ]")
 //{ autofold
 }
+data class Point(val x: Double, val y: Double) : Comparable<Point> {
+  override fun compareTo(other: Point): Int = when {
+    y != other.y -> (y - other.y).toInt()
+    else -> (x - other.x).toInt()
+  }
+}
 //}
 ```
 
