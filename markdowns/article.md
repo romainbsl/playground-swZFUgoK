@@ -260,6 +260,7 @@ fun main(args: Array<String>) {
 val pointRange = Point(1.0, 1.0)..Point(5.0, 5.0)
 val point = Point(2.5, 2.5)
 println("Does $point is $pointRange ? [= ${point in pointRange} ]")
+
 //{ autofold
 }
 data class Point(val x: Double, val y: Double) : Comparable<Point> {
