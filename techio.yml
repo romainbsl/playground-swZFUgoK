@@ -1,9 +1,7 @@
-title: What are Kotlin conventions ?
+title: '[Kotlin] Operator overloading'
 plan:
 - title: Let's learn Kotlin conventions
   statement: markdowns/article.md
-#- title: Now you know...
-#  statement: markdowns/exercice.md
 projects:
   java:
     root: /kotlin-project
