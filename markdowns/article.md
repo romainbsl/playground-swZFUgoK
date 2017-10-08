@@ -310,7 +310,7 @@ operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
 //}
 ```
 
-## Destructive Declaration
+## Destructuring Declaration
 
 Many times, you certainly had to decompose objects to play with:
 
