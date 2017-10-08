@@ -1,10 +1,9 @@
 ## Introduction
-
-Kotlin is a brand new world, with quiet a lot of new features. Some of them are named **conventions**. 
+ 
 Kotlin documentation said that if you define an `operator` function `plus`, you can use `+`, _by convention_, to call
  that function. 
  
-Conventions are not just for operators, you'll find them in Collections, Ranges, Destructive Declaration and Invocation.
+_Conventions_ are not just for operators, you'll find them in Collections, Ranges, Destructive Declaration and Invocation.
 
 Let's see the details !!! 
 
