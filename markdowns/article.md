@@ -97,6 +97,8 @@ override fun equals(other: Any?): Boolean {
 > **Exception**: As you may know, in Kotlin objects can be non-null. In that case, `x == null` will always be `false`, 
 and `equals` will never be called. 
 
+> Tips: As you may know, in Kotlin, data class already implements `eqauls()`, as other useful functions (`getters/setters`, `hashCode()`, `copy()` and `toString()`) 
+
 ### Comparison
 
 Comparison, `<`, `>`, `<=` and `>=`, are all based on one function, `compareTo()`. This function returns an `Int`, 
