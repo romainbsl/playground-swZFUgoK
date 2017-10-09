@@ -276,7 +276,7 @@ data class Point(val x: Double, val y: Double) : Comparable<Point> {
 
 ### Iterating over ranges
 
-To go further we may implement an operator to iterate over over `Point` ranges, the `iterator()`:
+To go further we may implement an operator to iterate over `Point` ranges, the `iterator()`:
 
 ```kotlin
 operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
