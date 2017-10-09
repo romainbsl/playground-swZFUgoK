@@ -3,7 +3,7 @@
 Kotlin documentation said that if you define an `operator` function `plus`, you can use `+`, _by convention_, to call
  that function. 
  
-_Conventions_ are not just for operators, you'll find them in Collections, Ranges, Destructive Declaration and Invocation.
+_Conventions_ are not just for operators, you'll find them in Collections, Ranges, Destructuring Declaration and Invocation.
 
 Let's see the details !!! 
 
@@ -12,7 +12,7 @@ Let's see the details !!!
 Kotlin allows us to overload some operators on any object we have created, or that we know of (through [extensions][]). 
 The concept of [operator overloading][op_overloading] provides a way to invoke functions to perform arithmetic 
 operation, equality checks or comparison on whatever object we want, through symbols like `+`, `-`, `/`, `*`, `%`,
- `<`, `>`, `=`. But, obviously, those overloading should be defined when it make sense to use them.
+ `<`, `>`. But, obviously, those overloading should be defined when it make sense to use them.
  
 For the following parts, let's assume we have the `data class`:  
 
