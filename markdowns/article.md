@@ -403,7 +403,7 @@ for((key, value) in map) println("Literal of $key is $value")
 
 ## Summary
 
-> Here is a reminder of what you can do with conventions
+> Here is a reminder of what you can do `by convention`
 
   | Expression | Invoke |
   | -----------|-------------- |
