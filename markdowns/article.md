@@ -140,7 +140,13 @@ and `equals` will never be called.
 ::: Show the answer
 
 ```kotlin
-operator fun Fraction.times(num: Int) = Fraction(numerator * num, denominator)
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (other != null && this::class.java != other::class.java) return false
+
+    other as Product
+    return name == other.name && price == other.price
+  }
 ```
 
 :::
