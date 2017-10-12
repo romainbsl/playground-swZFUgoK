@@ -20,7 +20,7 @@ class FractionTest {
       msgPlus(error("Fraction(7, 6)", "$fractPlus1"))
     } else msgPlus("🌟 $fractPlus1")
 
-    msgPlus(null)
+    msgPlus("")
 
     val fractPlus2 = fraction1 + fraction3
     msgPlus(running("Fraction(1, 2) + Fraction(3, 4)"))
@@ -30,7 +30,7 @@ class FractionTest {
       msgPlus(error("Fraction(10, 8)", "$fractPlus2"))
     } else msgPlus("🌟 $fractPlus2")
 
-    msgPlus(null)
+    msgPlus("")
 
     val fractPlus3 = fraction2 + fraction3
     msgPlus(running("Fraction(1, 2) + Fraction(3, 4)"))
@@ -53,7 +53,7 @@ class FractionTest {
       msgPlus(error("Fraction(2, 2)", "$fractTimes1"))
     } else msgPlus("🌟 $fractTimes1")
 
-    msgPlus(null)
+    msgPlus("")
 
     val fractTimes2 = fraction2 * 3
     msgPlus(running("Fraction(2, 3) * 3"))
@@ -63,7 +63,7 @@ class FractionTest {
       msgPlus(error("Fraction(6, 3)", "$fractTimes2"))
     } else msgPlus("🌟 $fractTimes2")
 
-    msgPlus(null)
+    msgPlus("")
 
     val fractTimes3 = fraction3 * 4
     msgPlus(running("Fraction(3, 4) * 4"))
