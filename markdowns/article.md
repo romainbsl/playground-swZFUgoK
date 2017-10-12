@@ -1,10 +1,9 @@
 ## Introduction
-
-Kotlin is a brand new world, with quiet a lot of new features. Some of them are named **conventions**. 
+ 
 Kotlin documentation said that if you define an `operator` function `plus`, you can use `+`, _by convention_, to call
  that function. 
  
-Conventions are not just for operators, you'll find them in Collections, Ranges, Destructive Declaration and Invocation.
+_Conventions_ are not just for operators, you'll find them in Collections, Ranges, Destructuring Declaration and Invocation.
 
 Let's see the details !!! 
 
@@ -13,7 +12,7 @@ Let's see the details !!!
 Kotlin allows us to overload some operators on any object we have created, or that we know of (through [extensions][]). 
 The concept of [operator overloading][op_overloading] provides a way to invoke functions to perform arithmetic 
 operation, equality checks or comparison on whatever object we want, through symbols like `+`, `-`, `/`, `*`, `%`,
- `<`, `>`, `=`. But, obviously, those overloading should be defined when it make sense to use them.
+ `<`, `>`. But, obviously, those overloading should be defined when it make sense to use them.
  
 For the following parts, let's assume we have the `data class`:  
 
@@ -97,6 +96,8 @@ override fun equals(other: Any?): Boolean {
 
 > **Exception**: As you may know, in Kotlin objects can be non-null. In that case, `x == null` will always be `false`, 
 and `equals` will never be called. 
+
+> Tips: As you may know, in Kotlin, data class already implements `eqauls()`, as other useful functions (`getters/setters`, `hashCode()`, `copy()` and `toString()`) 
 
 ### Comparison
 
@@ -277,7 +278,7 @@ data class Point(val x: Double, val y: Double) : Comparable<Point> {
 
 ### Iterating over ranges
 
-To go further we may implement an operator to iterate over over `Point` ranges, the `iterator()`:
+To go further we may implement an operator to iterate over `Point` ranges, the `iterator()`:
 
 ```kotlin
 operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
@@ -311,7 +312,7 @@ operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
 //}
 ```
 
-## Destructive Declaration
+## Destructuring Declaration
 
 Many times, you certainly had to decompose objects to play with:
 
