@@ -17,7 +17,6 @@ class ProductTest {
       msgEquals(error("false", "$equals1"))
     } else msgEquals("🌟 $equals1")
 
-
     val equals2 = product1 == product3
     msgEquals(running("$product1 == $product3"))
     if (!equals2) {

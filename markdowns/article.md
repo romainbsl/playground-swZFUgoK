@@ -140,13 +140,13 @@ and `equals` will never be called.
 ::: Show the answer
 
 ```kotlin
-  override fun equals(other: Any?): Boolean {
-    if (this === other) return true
-    if (other != null && this::class.java != other::class.java) return false
+override fun equals(other: Any?): Boolean {
+  if (this === other) return true
+  if (other != null && this::class.java != other::class.java) return false
 
-    other as Product
-    return name == other.name && price == other.price
-  }
+  other as Product
+  return name == other.name && price == other.price
+}
 ```
 
 :::
@@ -205,6 +205,23 @@ data class Point(val x: Double, val y: Double) : Comparable<Point> {
   }
 }
 ```
+
+
+#### Let's practice a little
+
+@[Try to implement the compareTo() function]({"stubs": ["src/MyDate.kt"], "command": "MyDateTest#compareTo"})
+
+::: Show the answer
+
+```kotlin
+override fun compareTo(other: MyDate) = when {
+  year != other.year -> year - other.year
+  month != other.month -> month - other.month
+  else -> dayOfMonth - other.dayOfMonth
+}
+```
+
+:::
 
 ## Collections
 
