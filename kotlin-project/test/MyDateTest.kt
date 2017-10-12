@@ -44,7 +44,7 @@ class MyDateTest {
       msgCompare(error("true", "$comparison5"))
     } else msgCompare("🌟 $comparison5")
 
-    success(comparison1 && comparison2 && comparison3 && comparison4)
+    success(comparison1 && !comparison2 && !comparison3 && !comparison4 && comparison5)
   }
 
   private fun msgCompare(string: String) = msg("Compare", string)
