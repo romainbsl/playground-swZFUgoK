@@ -501,5 +501,7 @@ for((key, value) in map) println("Literal of $key is $value")
 
 Go further with the [full documentation](https://kotlinlang.org/docs/reference/) !
 
+Thanks to Simon Wirtz for his inspiring [article](https://blog.simon-wirtz.de/kotlin-conventions-operator-overloading/) !
+
 [extensions]: https://kotlinlang.org/docs/reference/extensions.html
 [op_overloading]: https://kotlinlang.org/docs/reference/operator-overloading.html
