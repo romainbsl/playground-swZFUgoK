@@ -75,12 +75,18 @@ object's definition.
 
 #### Let's practice a little
 
+Assuming the following `data class`:
+
+```kootlin
+data class Fraction(val numerator: Int, val denominator: Int)
+```
+
 @[Try to implement the `+` operator for the following `data class`.]({"stubs": ["src/fractionPlus.kt", "src/Fraction.kt"], "command": "FractionTest#plus"})
 
 ::: Show the answer
 
 ```kotlin
-operator fun plus(add: Fraction): Fraction =
+operator fun Fraction.plus(add: Fraction): Fraction =
   if (this.denominator == add.denominator) {
     Fraction(this.numerator + add.numerator, denominator)
   } else {
@@ -96,7 +102,7 @@ operator fun plus(add: Fraction): Fraction =
 ::: Show the answer
 
 ```kotlin
-operator fun times(num: Int) = Fraction(numerator * num, denominator)
+operator fun Fraction.times(num: Int) = Fraction(numerator * num, denominator)
 ```
 
 :::
