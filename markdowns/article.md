@@ -73,6 +73,34 @@ fun main(args: Array<String>) {
 Note that those examples are quiet simple, you may be able to implement more complex operator, depending on your own 
 object's definition.
 
+#### Let's practice a little
+
+@[Try to implement the `+` operator for the following `data class`.]({"stubs": ["Fraction.kt"], "command": "FractionTest#plus"})
+
+::: Show the answer
+
+```kotlin
+operator fun plus(add: Fraction): Fraction =
+  if (this.denominator == add.denominator) {
+    Fraction(this.numerator + add.numerator, denominator)
+  } else {
+    Fraction(numerator * add.denominator + add.numerator * denominator,
+        denominator * add.denominator)
+  }
+```
+
+:::
+
+@[Try to implement the `*` operator for the following `data class`.]({"stubs": ["Fraction.kt"], "command": "FractionTest#times"})
+
+::: Show the answer
+
+```kotlin
+operator fun times(num: Int) = Fraction(numerator * num, denominator)
+```
+
+:::
+
 ### Equality and inequality
 
 As a Java developer, I always felt confused about equality, sometimes you have to use `==` / `!=` (on primitives), 

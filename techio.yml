@@ -1,6 +1,6 @@
 title: '[Kotlin] Operator overloading'
 plan:
-- title: Let's learn Kotlin conventions
+- title: Let's learn about Kotlin operator overloading
   statement: markdowns/article.md
 projects:
   java:
