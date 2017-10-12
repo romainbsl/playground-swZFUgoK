@@ -75,7 +75,7 @@ object's definition.
 
 #### Let's practice a little
 
-@[Try to implement the `+` operator for the following `data class`.]({"stubs": ["src/Fraction.kt"], "command": "FractionTest#plus"})
+@[Try to implement the `+` operator for the following `data class`.]({"stubs": ["src/fractionPlus.kt", "src/Fraction.kt"], "command": "FractionTest#plus"})
 
 ::: Show the answer
 
@@ -91,7 +91,7 @@ operator fun plus(add: Fraction): Fraction =
 
 :::
 
-@[Try to implement the `*` operator for the following `data class`.]({"stubs": ["src/Fraction.kt"], "command": "FractionTest#times"})
+@[Try to implement the `*` operator for the following `data class`.]({"stubs": ["src/fractionTimes.kt", "src/Fraction.kt"], "command": "FractionTest#times"})
 
 ::: Show the answer
 
