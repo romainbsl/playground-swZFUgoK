@@ -81,7 +81,7 @@ Assuming the following `data class`:
 data class Fraction(val numerator: Int, val denominator: Int)
 ```
 
-@[Try to implement the `+` operator for the following `data class`.]({"stubs": ["src/fractionPlus.kt", "src/Fraction.kt"], "command": "FractionTest#plus"})
+@[Try to implement the `+` operator for `Fraction`.]({"stubs": ["src/fractionPlus.kt", "src/Fraction.kt"], "command": "FractionTest#plus"})
 
 ::: Show the answer
 
@@ -97,7 +97,7 @@ operator fun Fraction.plus(add: Fraction): Fraction =
 
 :::
 
-@[Try to implement the `*` operator for the following `data class`.]({"stubs": ["src/fractionTimes.kt", "src/Fraction.kt"], "command": "FractionTest#times"})
+@[Try to implement the `*` operator for `Fraction`.]({"stubs": ["src/fractionTimes.kt", "src/Fraction.kt"], "command": "FractionTest#times"})
 
 ::: Show the answer
 
@@ -132,6 +132,18 @@ override fun equals(other: Any?): Boolean {
 and `equals` will never be called. 
 
 > Tips: As you may know, in Kotlin, data class already implements `eqauls()`, as other useful functions (`getters/setters`, `hashCode()`, `copy()` and `toString()`) 
+
+#### Let's practice a little
+
+@[Try to implement the `==` operator for the following `data class`.]({"stubs": ["src/Product.kt"], "command": "ProductTest#equals"})
+
+::: Show the answer
+
+```kotlin
+operator fun Fraction.times(num: Int) = Fraction(numerator * num, denominator)
+```
+
+:::
 
 ### Comparison
 
