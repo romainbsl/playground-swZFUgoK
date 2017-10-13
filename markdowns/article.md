@@ -292,7 +292,7 @@ val contains: (Product, OperatingSystem) -> String = { p, r ->
 #### Let's practice a little
 
 @[Try to implement the get() function for `ComparableFraction` to retrieve the numerator and the denominator]({"stubs": 
-["src/fractionGet.kt"], "command": "FractionTest#get"})
+["src/fractionGet.kt"], "command": "ComparableFractionTest#get"})
 
 ::: Show the answer
 
