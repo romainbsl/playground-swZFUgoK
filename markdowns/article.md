@@ -291,13 +291,13 @@ val contains: (Product, OperatingSystem) -> String = { p, r ->
 
 #### Let's practice a little
 
-@[Try to implement the get() function for `Fraction`]({"stubs": ["src/fractionGet.kt", "src/Fraction.kt"], 
-"command": "FractionTest#get"})
+@[Try to implement the get() function for `ComparableFraction` to retrieve the numerator and the denominator]({"stubs": 
+["src/fractionGet.kt"], "command": "FractionTest#get"})
 
 ::: Show the answer
 
 ```kotlin
-operator fun Fraction.get(index: Int) =
+operator fun ComparableFraction.get(index: Int) =
     when (index) {
       0 -> numerator
       1 -> denominator
