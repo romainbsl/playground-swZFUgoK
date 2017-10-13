@@ -3,7 +3,5 @@ class Product(val name: String, val price: Double) {
     TODO("not implemented")
   }
 
-  override fun toString(): String {
-    return "Product {$name - $price}"
-  }
+  override fun toString()= "Product {$name - $price}"
 }
