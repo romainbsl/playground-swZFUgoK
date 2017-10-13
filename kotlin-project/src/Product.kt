@@ -3,7 +3,9 @@ class Product(val name: String, val price: Double) {
     TODO("not implemented")
   }
 
+   // { autofold
   override fun toString(): String {
     return "Product {$name - $price}"
   }
+  //}
 }
