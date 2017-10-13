@@ -135,17 +135,18 @@ and `equals` will never be called.
 
 #### Let's practice a little
 
-@[Try to implement the `==` operator for the following `data class`.]({"stubs": ["src/Product.kt"], "command": "ProductTest#equals"})
+@[Try to implement the `==` operator for `EqFraction`.]({"stubs": ["src/EqFraction.kt"], "command": "EqFractionTest#equals"})
 
 ::: Show the answer
 
 ```kotlin
 override fun equals(other: Any?): Boolean {
   if (this === other) return true
-  if (other != null && this::class.java != other::class.java) return false
+  if (javaClass != other?.javaClass) return false
 
-  other as Product
-  return name == other.name && price == other.price
+  other as EqFraction
+
+  return decimal == other.decimal
 }
 ```
 
@@ -208,7 +209,7 @@ data class Point(val x: Double, val y: Double) : Comparable<Point> {
 
 #### Let's practice a little
 
-@[Try to implement the compareTo() function for the following `data claas`]({"stubs": ["src/ComparableFraction.kt"], 
+@[Try to implement the compareTo() function for `ComparableFraction`]({"stubs": ["src/ComparableFraction.kt"], 
 "command": "ComparableFractionTest#compareTo"})
 
 ::: Show the answer
