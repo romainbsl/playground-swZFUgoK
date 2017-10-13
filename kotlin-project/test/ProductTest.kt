@@ -17,12 +17,16 @@ class ProductTest {
       msgEquals(error("false", "$equals1"))
     } else msgEquals("🌟 $equals1")
 
+    msgEquals("")
+
     val equals2 = product1 == product3
     msgEquals(running("$product1 == $product3"))
     if (!equals2) {
       msgEquals(badImpl("equals()"))
       msgEquals(error("true", "$equals2"))
     } else msgEquals("🌟 $equals2")
+
+    msgEquals("")
 
     val equals3 = product4 == product5
     msgEquals(running("$product4 == $product5"))

@@ -72,7 +72,7 @@ class FractionTest {
     success(resultTimes1 && resultTimes2 && resultTimes3)
   }
 
-
-  private fun msgPlus(msg: String?) = msg("plus()", msg)
-  private fun msgTimes(msg: String?) = msg("times()", msg)
+  private fun msgPlus(msg: String) = msg("plus()", msg)
+  private fun msgTimes(msg: String) = msg("times()", msg)
+  private fun msgGet(msg: String) = msg("get()", msg)
 }

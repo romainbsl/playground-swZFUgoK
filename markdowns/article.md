@@ -208,16 +208,13 @@ data class Point(val x: Double, val y: Double) : Comparable<Point> {
 
 #### Let's practice a little
 
-@[Try to implement the compareTo() function]({"stubs": ["src/MyDate.kt"], "command": "MyDateTest#compareTo"})
+@[Try to implement the compareTo() function for the following `data claas`]({"stubs": ["src/ComparableFraction.kt"], 
+"command": "ComparableFractionTest#compareTo"})
 
 ::: Show the answer
 
 ```kotlin
-override fun compareTo(other: MyDate) = when {
-  year != other.year -> year - other.year
-  month != other.month -> month - other.month
-  else -> dayOfMonth - other.dayOfMonth
-}
+ override fun compareTo(other: ComparableFraction) = decimal.compareTo(other.decimal)
 ```
 
 :::
