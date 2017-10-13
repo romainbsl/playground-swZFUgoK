@@ -288,6 +288,24 @@ val contains: (Product, OperatingSystem) -> String = { p, r ->
 //}
 ```
 
+#### Let's practice a little
+
+@[Try to implement the get() function for `Fraction`]({"stubs": ["src/fractionGet.kt", "src/Fraction.kt"], 
+"command": "FractionTest#get"})
+
+::: Show the answer
+
+```kotlin
+operator fun Fraction.get(index: Int) =
+    when (index) {
+      0 -> numerator
+      1 -> denominator
+      else -> IllegalArgumentException("Index must be 0 or 1")
+    }
+```
+
+:::
+
 ## Ranges
 
 Ranges are part of the nice features that make you love Kotlin. It's no magic, there is _(nearly)_ no complexity, but 
