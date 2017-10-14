@@ -398,6 +398,21 @@ operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
 //}
 ```
 
+#### Let's practice a little
+
+@[Try to implement the iterator() operator for `RangeFraction`] ({"stubs": ["src/fractionRange.kt", "src/RangeFraction
+.kt"], "command": "RangeFractionTest#iterator"})
+
+::: Show the answer
+
+```kotlin
+operator fun ClosedRange<RangeFraction>.iterator() = object : Iterator<RangeFraction> {
+  var currentFraction: RangeFraction = start
+  override fun hasNext() = currentFraction <= endInclusive
+  override fun next() = currentFraction++
+}
+```
+
 ## Destructuring Declaration
 
 Many times, you certainly had to decompose objects to play with:
