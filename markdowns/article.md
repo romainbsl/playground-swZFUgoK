@@ -400,8 +400,7 @@ operator fun ClosedRange<Point>.iterator() = object : Iterator<Point> {
 
 #### Let's practice a little
 
-@[Try to implement the iterator() operator for `RangeFraction`] ({"stubs": ["src/fractionRange.kt", "src/RangeFraction
-.kt"], "command": "RangeFractionTest#iterator"})
+@[Try to implement the iterator() operator for `RangeFraction`]({"stubs": ["src/fractionRange.kt", "src/RangeFraction.kt"], "command": "RangeFractionTest#iterator"})
 
 ::: Show the answer
 
