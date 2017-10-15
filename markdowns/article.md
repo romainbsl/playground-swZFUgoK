@@ -504,6 +504,19 @@ for((key, value) in map) println("Literal of $key is $value")
 // }
 ```
 
+#### Let's practice a little
+
+@[Try to use a Desctructuring Declaration to get all value from `Product` in once]({"stubs": ["src/destructuring.kt",
+ "src/Product.kt"], "command": "ProductTest#component"})
+
+::: Show the answer
+
+```kotlin
+val (name, brand, size, price) = product
+```
+
+:::
+
 ## Summary
 
 > Here is a reminder of what you can do `by convention`

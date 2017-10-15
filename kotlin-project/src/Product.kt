@@ -1,0 +1,1 @@
+data class Product(val name: String, val brand: String, val size: Double, val price: Double)
