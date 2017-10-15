@@ -12,4 +12,7 @@ data class RangeFraction(val numerator: Int, val denominator: Int) : Comparable<
   }
 
   operator fun inc() = RangeFraction(numerator + 1, denominator + 1)
+  override fun toString(): String {
+    return "$numerator/$denominator = $decimal"
+  }
 }
