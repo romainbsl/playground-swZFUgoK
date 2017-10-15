@@ -11,6 +11,8 @@ class ProductTest {
       msgDestructuring("🌟 Congratz ! You end up this course with honor ! 🌟")
     else
       msgDestructuring("🐞 You may forget to implement something ! :-(")
+
+    success(isDestructured)
   }
 
   // check if a string exists in a text file
