@@ -412,6 +412,8 @@ operator fun ClosedRange<RangeFraction>.iterator() = object : Iterator<RangeFrac
 }
 ```
 
+:::
+
 ## Destructuring Declaration
 
 Many times, you certainly had to decompose objects to play with:

@@ -52,6 +52,8 @@ class RangeFractionTest {
       msgIterator(error("false", "$result5"))
     } else msgIterator("$result5")
 
+    msgIterator("")
+
     for (fraction in fractIterator) {
       msgIterator(fraction.toString())
     }
