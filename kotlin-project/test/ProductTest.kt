@@ -34,5 +34,5 @@ class ProductTest {
     }
   }
 
-  private fun msgDestructuring(str: String) = msg("Destructuring Declaration", str)
+  fun msgDestructuring(str: String) = msg("Destructuring Declaration", str)
 }
