@@ -227,7 +227,7 @@ Kotlin's Collections bring two type of **conventions**, the interaction with a s
 
 > `get` / `set`
 
-You can implement `get`and `set` operators and then use sqaure brackets to interact with your objects.
+You can implement `get`and `set` operators and then use square brackets to interact with your objects.
 
 | Expression | Function called |
 | -------|-------------- |
